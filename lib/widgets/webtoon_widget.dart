@@ -16,29 +16,34 @@ class Webtoon extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(
+          // Nav -> Detail
           context,
           MaterialPageRoute(
             builder: (context) =>
                 DetailScreen(title: title, thumb: thumb, id: id),
+            fullscreenDialog: true,
           ),
         );
       },
       child: Column(
         children: [
-          Container(
-            width: 250,
-            clipBehavior: Clip.hardEdge, // 자식의 부모 영역을 침범하는 방법
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 15, // 얼마나 멀리까지 그림자
-                    offset: const Offset(10, 10), // 그림자 위치
-                    color: Colors.black.withOpacity(0.5),
-                  ),
-                ]),
-            child: Image.asset("assets/images/thumb.jpg"),
-            // child: Image.network(webtoon.thumb),
+          Hero(
+            tag: id,
+            child: Container(
+              width: 250,
+              clipBehavior: Clip.hardEdge, // 자식의 부모 영역을 침범하는 방법
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 15, // 얼마나 멀리까지 그림자
+                      offset: const Offset(10, 10), // 그림자 위치
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                  ]),
+              child: Image.asset("assets/images/thumb.jpg"),
+              // child: Image.network(webtoon.thumb),
+            ),
           ),
           const SizedBox(
             height: 10,
